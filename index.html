@@ -1,6 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+<head><!DOCTYPE html>
+<html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando...</title>
+    <script>
+        // SEU DOMÍNIO ÚNICO
+        const linkDaLoja = "https://www.shopeee.online/";
+        
+        // Detecta o dispositivo
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        
+        // Função para redirecionamento de fallback
+        function redirecionarFallback() {
+            window.location.href = linkDaLoja;
+        }
+        
+        if (isAndroid) {
+            // ANDROID - tenta abrir no Chrome
+            const urlSemProtocolo = linkDaLoja.replace("https://", "").replace("http://", "");
+            // Intent URL corrigida
+            window.location.href = "intent://" + urlSemProtocolo + "#Intent;scheme=https;package=com.android.chrome;end;";
+            
+            // Fallback: se não abrir com intent, abre normalmente após 1 segundo
+            setTimeout(redirecionarFallback, 1000);
+            
+        } else if (isIOS) {
+            // IOS - abre diretamente no Safari
+            window.location.href = linkDaLoja;
+            
+        } else {
+            // Outros dispositivos
+            window.location.href = linkDaLoja;
+        }
+    </script>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; text-align: center; padding: 50px; background: #f5f5f5; margin: 0;">
+    <div style="max-width: 400px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div style="font-size: 50px; margin-bottom: 20px;">🔄</div>
+        <h2 style="color: #333; margin-bottom: 10px;">Abrindo no navegador...</h2>
+        <p style="color: #666; margin-bottom: 20px;">Aguarde um momento</p>
+        <p style="font-size: 12px; color: #999;">Se não abrir automaticamente, <a href="#" id="linkManual" style="color: #007aff; text-decoration: none; font-weight: bold;">clique aqui</a></p>
+    </div>
+    
+    <script>
+        // Link manual caso não abra
+        document.getElementById("linkManual").onclick = function(e) {
+            e.preventDefault();
+            window.location.href = linkDaLoja;
+        };
+    </script>
+</body>
+</html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melissa | Encontre seu próximo modelo</title>
